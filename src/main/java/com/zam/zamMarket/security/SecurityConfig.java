@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> {
                     authz.requestMatchers("/api/auth/**").permitAll()
                             .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                            .requestMatchers("/api/catalog").permitAll()
                             .requestMatchers("/api/fireBase/**").hasRole("ADMIN")
                             .requestMatchers("/api/maintenance/**").hasRole("ADMIN")
                             .anyRequest().authenticated();

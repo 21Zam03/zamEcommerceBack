@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 public class SaleController {
 /*
     public final SaleService saleService;
-
     @Autowired
     public SaleController(SaleService saleService) {
         this.saleService = saleService;
     }
+
 
     @PostMapping
     public ResponseEntity<SaleEntity> createSale(@RequestBody SaleDto saleDto) {
