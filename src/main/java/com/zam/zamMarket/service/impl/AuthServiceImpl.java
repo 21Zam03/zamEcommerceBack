@@ -1,6 +1,5 @@
 package com.zam.zamMarket.service.impl;
 
-import com.zam.zamMarket.Enums.GenreEnum;
 import com.zam.zamMarket.Enums.IdTypeEnum;
 import com.zam.zamMarket.entity.ClientEntity;
 import com.zam.zamMarket.entity.RoleEntity;
@@ -108,14 +107,11 @@ public class AuthServiceImpl implements AuthService {
                 .identityDocumentNumber(signUpRequest.getIdentityDocumentNumber())
                 .phoneCountryCode(signUpRequest.getPhoneCountryCode())
                 .phoneNumber(signUpRequest.getPhoneNumber())
-                .country(signUpRequest.getCountry())
-                .genre(GenreEnum.valueOf(signUpRequest.getGenre()))
-                .birthdate(signUpRequest.getBirthdate())
                 .isActive(true)
                 .build();
-        ArrayList<SimpleGrantedAuthority> authorityList = new ArrayList<>();
         clientRepository.save(client);
 
+        ArrayList<SimpleGrantedAuthority> authorityList = new ArrayList<>();
         userCreated.getRoleList().forEach(role -> authorityList.add(new SimpleGrantedAuthority("ROLE_".concat(role.getName()))));
 
         userCreated.getRoleList()
@@ -123,7 +119,7 @@ public class AuthServiceImpl implements AuthService {
                 .flatMap(roleEntity -> roleEntity.getPermissionList().stream())
                 .forEach(permission -> authorityList.add(new SimpleGrantedAuthority(permission.getName())));
 
-        SecurityContext context = SecurityContextHolder.getContext();
+        //SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = new UsernamePasswordAuthenticationToken(userCreated.getEmail(), userCreated.getPassword(), authorityList);
         String accessToken = jwtUtils.createToken(authentication);
 

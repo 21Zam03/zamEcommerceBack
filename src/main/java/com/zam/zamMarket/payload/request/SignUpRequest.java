@@ -1,7 +1,5 @@
 package com.zam.zamMarket.payload.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zam.zamMarket.Enums.GenreEnum;
 import com.zam.zamMarket.Enums.IdTypeEnum;
 import com.zam.zamMarket.validation.annotations.EnumValue;
 import com.zam.zamMarket.validation.annotations.NumericValue;
@@ -14,8 +12,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -63,19 +59,6 @@ public class SignUpRequest {
     @NotNull(message = "Phone number must not be null")
     @Size(min = 9, max = 20, message = "Phone number must have between 9 and 20 characters")
     private String phoneNumber;
-
-    @NotNull(message = "Country must not be null")
-    @Size(min = 4, max = 100, message = "Country must have between 4 and 100 characters")
-    @TextValue(message = "Country must not contain numeric values")
-    private String country;
-
-    @NotNull(message = "Genre must not be null")
-    @EnumValue(enumClass = GenreEnum.class, message = "Invalid genre")
-    private String genre;
-
-    @NotNull(message = "Birthdate must not be null")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDate birthdate;
 
     @NotNull(message = "Active must not be null")
     private boolean active;

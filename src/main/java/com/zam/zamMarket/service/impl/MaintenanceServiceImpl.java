@@ -62,11 +62,8 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         String fileName = FileUtil.getFileName(file);
 
         ImageEntity imageEntity = ImageEntity.builder()
-                .fileName(fileName)
+                .imageName(fileName)
                 .url(blob.getUrl())
-                .fileSize(file.getSize())
-                .extension(fileExtension)
-                .isActive(true)
                 .build();
 
         ImageEntity imageCreated = imageRepository.save(imageEntity);
@@ -106,16 +103,14 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         ImageEntity imageToUpdate = imageRepository.findById(imageId)
                 .orElseThrow(()-> new NotFoundException("Image to update was not found"));
 
-        fireBaseStorageService.deleteFile(imageToUpdate.getFileName());
+        fireBaseStorageService.deleteFile(imageToUpdate.getImageName());
 
         BlobDto blob = fireBaseStorageService.uploadFile(file);
         String fileExtension = FileUtil.getFileExtension(file);
         String fileName = FileUtil.getFileName(file);
 
-        imageToUpdate.setFileName(fileName);
+        imageToUpdate.setImageName(fileName);
         imageToUpdate.setUrl(blob.getMediaLink());
-        imageToUpdate.setFileSize(blob.getSize());
-        imageToUpdate.setExtension(fileExtension);
         ImageEntity imageUpdated = imageRepository.save(imageToUpdate);
 
         CategoryEntity categoryFound = categoryRepository.findById(categoryId)
@@ -170,9 +165,6 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         clientToUpdate.setIdentityDocumentNumber(client.getIdentityDocumentNumber());
         clientToUpdate.setPhoneNumber(client.getPhoneNumber());
         clientToUpdate.setPhoneCountryCode(client.getPhoneCountryCode());
-        clientToUpdate.setCountry(client.getCountry());
-        clientToUpdate.setGenre(client.getGenre());
-        clientToUpdate.setBirthdate(client.getBirthdate());
         clientToUpdate.setIsActive(client.isActive());
 
         ClientEntity clientUpdated = clientRepository.save(clientToUpdate);

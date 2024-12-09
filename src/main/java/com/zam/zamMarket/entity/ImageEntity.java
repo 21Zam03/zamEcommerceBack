@@ -1,6 +1,5 @@
 package com.zam.zamMarket.entity;
 
-import com.zam.zamMarket.abstractClasses.AFile;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,25 +7,19 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "image")
-public class ImageEntity extends AFile {
+public class ImageEntity {
 
-    @Column(name = "typeImage")
-    private String typeImage;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "image_id")
+    private Integer imageId;
 
-    @Column(name = "height")
-    private Double height;
+    @Column(name = "url")
+    private String url;
 
-    @Column(name = "width")
-    private Double width;
-
-    @Builder
-    public ImageEntity(Integer fileId, String fileName, String description, Long fileSize, String extension, String url,
-                       Boolean isActive, String typeImage, Double height, Double width) {
-        super(fileId, fileName, description, fileSize, extension, url, isActive);
-        this.typeImage = typeImage;
-        this.height = height;
-        this.width = width;
-    }
+    @Column(name = "image_name")
+    private String imageName;
 }

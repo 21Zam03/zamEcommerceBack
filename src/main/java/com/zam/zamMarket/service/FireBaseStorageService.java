@@ -1,6 +1,5 @@
 package com.zam.zamMarket.service;
 
-import com.google.cloud.storage.Blob;
 import com.zam.zamMarket.payload.dtos.BlobDto;
 import com.zam.zamMarket.payload.response.MessageResponse;
 import org.springframework.web.multipart.MultipartFile;

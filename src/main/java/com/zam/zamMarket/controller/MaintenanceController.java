@@ -1,6 +1,5 @@
 package com.zam.zamMarket.controller;
 
-import com.zam.zamMarket.entity.CategoryEntity;
 import com.zam.zamMarket.payload.request.CategoryCreateRequest;
 import com.zam.zamMarket.payload.request.CategoryUpdateRequest;
 import com.zam.zamMarket.payload.request.ClientUpdateRequest;

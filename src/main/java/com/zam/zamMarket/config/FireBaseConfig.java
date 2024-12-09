@@ -14,7 +14,7 @@ public class FireBaseConfig {
 
     @Bean
     public FirebaseApp initializeFirebaseApp() throws IOException {
-        FileInputStream serviceAccount = new FileInputStream("zamecommerce-9293a-firebase-adminsdk-gkjen-0a034495b6.json");
+        FileInputStream serviceAccount = new FileInputStream("zamecommerce-9293a-firebase-adminsdk-gkjen-d71b1c3fb6.json");
 
         if (FirebaseApp.getApps().isEmpty()) {
             FirebaseOptions options = FirebaseOptions.builder()

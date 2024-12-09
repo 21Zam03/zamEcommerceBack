@@ -2,12 +2,14 @@ package com.zam.zamMarket.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "shop_cart_detail")
 public class ShopCartDetailEntity {
@@ -27,8 +29,5 @@ public class ShopCartDetailEntity {
 
     @Column(name = "quantity")
     private Integer quantity;
-
-    @Column(name = "price")
-    private Double price;
 
 }
